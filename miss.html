@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body bgcolor="skyblue">
+<script type="text/javascript">
+function val()
+	{
+		var fname=document.forms["miss"]["fname"].value;
+		var mname=document.forms["miss"]["mname"].value;
+		var lname=document.forms["miss"]["lname"].value;
+		var address=document.forms["miss"]["address"].value;
+		var mobile=document.forms["miss"]["mobileno"].value;
+		var gender=document.getElementById('one');
+		var gender1=document.getElementById('two');
+		var age=document.forms["miss"]["age"].value;
+		var image=document.forms["miss"]["file"].value;
+		var weight=document.forms["miss"]["weight"].value;
+		var height=document.forms["miss"]["height"].value;
+		var validate=true;		
+			if(fname=="")
+		{
+				
+			alert("Please enter first name");
+			fname.focus();
+			validate=false;
+		}
+			if(mname=="")
+			{
+				alert("Please enter middle name");
+				mname.focus();
+				validate=false;
+			}
+		if(lname=="")
+		{
+			alert("Please enter last name");
+			lname.focus();
+			validate=false;
+		}
+		
+		if(address=="")
+		{
+			alert("Please enter Address");
+			address.focus();
+			validate=false;
+		}
+		if(mobile=="")
+		{
+			alert("Please enter Your Mobile Number");
+			mobile.focus();
+			validate=false;
+		}
+		if(mobile.length!=10)
+		{
+			alert("Entered Mobile Number should be of 10 digits");
+			mobile.focus();
+			validate=false;
+		}
+		if((gender.checked==false)&&(gender1.checked==false))
+		{
+			alert("Please select your gender");
+			document.signup.r1.focus();
+			validate=false;
+		}
+		if(age=="")
+		{
+			alert("Please enter age");
+			age.focus();
+			validate=false;
+		}
+		if(image=="")
+		{
+			alert("Please Upload Missing Person Photo");
+			image.focus();
+			validate=false;
+		}
+		if(weight=="")
+		{
+			alert("Please enter Weight");
+			weight.focus();
+			validate=false;
+		}
+		if(height=="")
+		{
+			alert("Please enter Height");
+			height.focus();
+			validate=false;
+		}
+		
+		if(validate==true)
+		{
+			confirm("Record Added Succesfully");
+			window.open("miss.java");
+			return true;
+		}
+		else
+		{
+			window.history.back();
+			return false;
+		}
+	}
+</script>
+<h1><center>Missing Person Details</center></h1>
+<form name="miss" onsubmit="event.preventDefault();">
+<center>Enter full name<input type="text" name="fname" >
+<input type="text" name="mname">
+<input type="text" name="lname"><br>
+Enter Address<input type="text" name="address"><br>
+Enter Your Mobile Number<input type="text" name="mobileno"><br>
+Select Gender<input id="one" type="radio" value="Male" name="r1">Male
+<input id="two" type="radio" value="Female" name="r1">Female<br>
+Enter Age<input type="text" name="age"><br>
+Upload Image<input type="file" name="file" size="10"><br>
+Enter Weight<input type="text" name="weight"><br>
+Enter Height<input type="text" name="height"><br>
+<input type="submit" value="Submit" onclick="val()">
+<input type="reset" value="reset"></center>
+</form>
+</body>
+</html>
