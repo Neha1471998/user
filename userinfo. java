@@ -1,250 +1,245 @@
- 1 
+ 
  
 import java.io.File;
- 2 
  
 import java.io.FileInputStream;
- 3 
  
 import java.io.IOException;
- 4 
  
 import java.io.InputStream;
- 5 
+ 
  
 import java.io.PrintWriter;
- 6 
+
  
 import java.sql.Connection;
- 7 
- 
+
+
 import java.sql.DriverManager;
- 8 
+
  
 import java.sql.PreparedStatement;
- 9 
- 
+
+
 import java.sql.ResultSet;
- 10 
+ 
  
 import java.sql.SQLException;
- 11 
  
-import java.sql.Statement;
- 12 
- 
- 13 
+
+import java.sql.Statement; 
  
 import javax.servlet.ServletException;
- 14 
+
  
 import javax.servlet.annotation.WebServlet;
- 15 
+ 
  
 import javax.servlet.http.HttpServlet;
- 16 
+ 
  
 import javax.servlet.http.HttpServletRequest;
- 17 
+ 
  
 import javax.servlet.http.HttpServletResponse;
- 18 
+ 
  
 import javax.servlet.http.Part;
- 19 
+ 
  
 /**
- 20 
+ 
+
  
  * Servlet implementation class miss
- 21 
+ 
  
  */
- 22 
+ 
  
 @WebServlet("/userinfo")
- 23 
+ 
  
 public class userinfo extends HttpServlet {
- 24 
+  
  
     static PreparedStatement ps;
- 25 
  
     static PreparedStatement ps1;
- 26 
+  
  
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 27 
+  
  
         // TODO Auto-generated method stub
- 28 
+  
  
         response.setContentType("text/html");
- 29 
+ 
  
         String name=request.getParameter("name");
- 30 
+  
  
         String address=request.getParameter("address");
- 31 
+1
+
  
         String mobileno=request.getParameter("mobileno");
- 32 
+ 
  
        String dob=request.getParameter("dob") ;
- 34 
+ 
  
         //File f=new File(request.getParameter("file"));
- 35 
+ 
  
         //InputStream is=new FileInputStream(f);
- 36 
+  
  
       
- 38 
+  
  
         PrintWriter out=response.getWriter();
- 39 
+  
  
         String title="Displaying person data";
- 40 
+  
  
         String q="insert into user values(?,?,?,?,?,?,?)";
- 41 
+  
  
         String p="select * from user";
- 42 
+ 
  
         Connection con;
- 43 
+  
  
         try {
- 44 
+ 
  
             Class.forName("com.mysql.jdbc.Driver");
- 45 
+  
  
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
- 46 
+  
  
             ps=con.prepareStatement(q);
- 47 
+  
  
             ps1=con.prepareStatement(p);
- 48 
+  
  
             ps.setString(1,name);
- 49 
+  
  
             ps.setString(2,address);
- 50 
+  
  
             ps.setString(3,mobileno);
- 51 
+  
  
             ps.setString(4,dob);
- 56 
+  
  
             int r=ps.executeUpdate();
- 57 
+  
  
             ResultSet rs=ps1.executeQuery();
- 58 
+  
  
             if(r==1)
- 59 
+  
  
             {
- 60 
+  
  
                 out.println("Successfull"+"\n");
- 61 
+  
  
             }
- 62 
+  
  
             else
- 63 
+  
  
             {
- 64 
+  
  
                 out.println("Failed"+"\n");
- 65 
+  
  
             }
- 66 
+  
  
             while(rs.next())
- 67 
+  
  
             {
- 68 
+
  
                 out.println( "<html><body><table border=2><tr>"
- 69 
+ 
  
                         + "<th>Name</th><th>Address</th><th>Mobile Number</th>"
- 70 
+ 
  
                         + "<th>dob</th></tr>"
- 72 
+  
  
                         +"<tr><td>"+rs.getString(1)+"</td>"
- 73 
+  
  
                         +"<td>"+rs.getString(2)+"</td>"
- 74 
+  
  
-                        +"<td>"+rs.getString(3)+"</td>"
- 75 
+                      +"<td>"+rs.getString(3)+"</td>"
+  
  
                         +"<td>"+rs.getString(4)+"</td></tr></table></body></html>");
- 79 
+  
  
             }
- 80 
+  
  
-        }
- 81 
+       }
+ 
  
         catch (SQLException e) {
- 82 
+  
  
-            // TODO Auto-generated catch block
- 83 
+          // TODO Auto-generated catch block
+ 
  
             e.printStackTrace();
- 84 
+ 
  
         } catch (ClassNotFoundException e) {
- 85 
+  
  
             // TODO Auto-generated catch block
- 86 
+  
  
             e.printStackTrace();
- 87 
+  
  
         }
- 88 
+  
  
         finally {
- 89 
+  
  
             out.close();
- 90 
+  
  
         }
- 91 
+  
  
     }
- 92 
+  
  
     
- 93 
+ 
  
 }
- 94 
+  
  
