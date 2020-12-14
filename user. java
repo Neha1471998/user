@@ -77,9 +77,9 @@ public class user extends HttpServlet {
         response.setContentType("text/html");
  
  
-        String name=request.getParameter("name");
+        String fname=request.getParameter("fname");
   
- 
+        String lname=request.getparameter("lname") ;
         String address=request.getParameter("address");
 1
 
@@ -105,7 +105,7 @@ public class user extends HttpServlet {
         String title="Displaying person data";
   
  
-        String q="insert into user values(?,?,?,?,?,?,?)";
+        String q="insert into user values(?,?,?,?,?)";
   
  
         String p="select * from user";
@@ -129,16 +129,16 @@ public class user extends HttpServlet {
             ps1=con.prepareStatement(p);
   
  
-            ps.setString(1,name);
+            ps.setString(1,fname);
+  
+             ps. set String(2, lname) ;
+            ps.setString(3,address);
   
  
-            ps.setString(2,address);
+            ps.setString(4,mobileno);
   
  
-            ps.setString(3,mobileno);
-  
- 
-            ps.setString(4,dob);
+            ps.setString(5,dob);
   
  
             int r=ps.executeUpdate();
@@ -180,7 +180,7 @@ public class user extends HttpServlet {
                 out.println( "<html><body><table border=2><tr>"
  
  
-                        + "<th>Name</th><th>Address</th><th>Mobile Number</th>"
+                        + "<th>fName</th><th>lname</th><th>Address</th><th>Mobile Number</th>"
  
  
                         + "<th>dob</th></tr>"
@@ -195,7 +195,7 @@ public class user extends HttpServlet {
                       +"<td>"+rs.getString(3)+"</td>"
   
  
-                        +"<td>"+rs.getString(4)+"</td></tr></table></body></html>");
+                        +"<td>"+rs.getString(4)+"</td>"+"<td>"+getString(5)+"</td>"</tr></table></body></html>");
   
  
             }
