@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body bgcolor="skyblue">
+<script type="text/javascript">
+function val()
+	{
+		var fname=document.forms["user"]["fname"].value;
+		var lname=document.forms["user"]["lname"].value;
+		var address=document.forms["user"]["address"].value;
+		var mobile=document.forms["user"]["mobileno"].value;
+                var dob=document.form["user"]["dob"].value;
+		var validate=true;		
+			if(fname=="")
+		{
+				
+			alert("Please enter first name");
+			fname.focus();
+			validate=false;
+		}
+
+		 if(lname=="")
+		{
+			alert("Please enter last name");
+			lname.focus();
+			validate=false;
+		}
+		
+		if(address=="")
+		{
+			alert("Please enter Address");
+			address.focus();
+			validate=false;
+		}
+		if(mobile=="")
+		{
+			alert("Please enter Your Mobile Number");
+			mobile.focus();
+			validate=false;
+		}
+		if(mobile.length!=10)
+		{
+			alert("Entered Mobile Number should be of 10 digits");
+			mobile.focus();
+			validate=false;
+		}
+	        
+	        if(dob=="") 
+                 {
+                     alert ("enter date of birth") ;
+                      mobile. focus();
+                      validate=false;
+}
+               else
+           {
+              windows.history.back() ;
+               return false;
+}
+	}
+</script>
+<h1><center> Person Details</center></h1>
+<form name="user" onsubmit="event.preventDefault();">
+<center>Enter full name<input type="text" name="fname" >
+<input type="text" name="lname"><br>
+Enter Address<input type="text" name="address"><br>
+Enter Your Mobile Number<input type="text" name="mobileno"><br>
+Select date of birth<input type="text" dob="dob"><br>
+<input type="submit" value="Submit" onclick="val()">
+<input type="reset" value="reset"></center>
+</form>
+</body>
+</html>
