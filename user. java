@@ -57,10 +57,10 @@ import javax.servlet.http.Part;
  */
  
  
-@WebServlet("/userinfo")
+@WebServlet("/user")
  
  
-public class userinfo extends HttpServlet {
+public class user extends HttpServlet {
   
  
     static PreparedStatement ps;
